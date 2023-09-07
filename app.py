@@ -48,7 +48,7 @@ if "openai_key" in st.session_state:
                 fig = plt.gcf()
                 #fig, ax = plt.subplots()
                 if fig.get_axes():
-                    st.pyplot(fig)
+                    st.pyplot(fig, block=False)
                 st.write(x)
                 st.session_state.prompt_history.append(question)
 
