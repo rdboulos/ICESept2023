@@ -4,12 +4,11 @@ from pandasai import PandasAI
 from pandasai.llm.openai import OpenAI
 import matplotlib.pyplot as plt
 
-st.title("pandas-ai streamlit interface")
+st.title("Matthew Dinham")
 
-st.write("A demo interface for [PandasAI](https://github.com/gventuri/pandas-ai)")
-st.write(
-    "Looking for an example *.csv-file?, check [here](https://gist.github.com/netj/8836201)."
-)
+st.write("2023 UCI Cycling World Championships")
+#st.write(
+    #"Looking for an example *.csv-file?, check [here](https://gist.github.com/netj/8836201).")
 
 if "openai_key" not in st.session_state:
     with st.form("API key"):
