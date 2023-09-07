@@ -42,14 +42,14 @@ if "openai_key" in st.session_state:
         if submitted:
             with st.spinner():
                 llm = OpenAI(api_token=API_KEY_2)
-                pandas_ai = PandasAI(llm, conversational=True, enable_cache=False)
+                pandas_ai = PandasAI(llm, conversational=True, enable_cache=False, block=False)
                 x = pandas_ai.run(st.session_state.df, prompt=question)
                 
                 fig = plt.gcf()
                 #fig, ax = plt.subplots()
                 if fig.get_axes():
                     st.pyplot(fig)
-                st.write(x, block=False)
+                st.write(x)
                 st.session_state.prompt_history.append(question)
 
     if st.session_state.df is not None:
