@@ -44,7 +44,8 @@ if "openai_key" in st.session_state:
                 llm = OpenAI(api_token=API_KEY_2)
                 pandas_ai = PandasAI(llm, conversational=True, enable_cache=False)
                 x = pandas_ai.run(st.session_state.df, prompt=question)
-                
+
+                matplotlib.use('TkAgg')
                 fig = plt.gcf()
                 #fig, ax = plt.subplots()
                 if fig.get_axes():
