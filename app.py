@@ -45,9 +45,7 @@ if "openai_key" in st.session_state:
                 pandas_ai = PandasAI(llm, conversational=True, enable_cache=False)
                 x = pandas_ai.run(st.session_state.df, prompt=question)
 
-                plt.use('TkAgg')
                 fig = plt.TkAgg()
-                #fig = plt.gcf()
                 #fig, ax = plt.subplots()
                 if fig.get_axes():
                     st.pyplot(fig)
