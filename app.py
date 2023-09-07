@@ -4,15 +4,12 @@ from pandasai import PandasAI
 from pandasai.llm.openai import OpenAI
 import matplotlib.pyplot as plt
 
-API_KEY='````sk-KUXXmJ4kF````Eblnb1JXwSg````T3BlbkFJw````E8Qbz411kQ2Q````pWww90w````'
-API_KEY_2 = API_KEY.replace('````', '')
+st.title("pandas-ai streamlit interface")
 
-
-st.title("INC.redible")
-
-st.write("Get reliable data in seconds")
-#st.write(
-    #"Looking for an example *.csv-file?, check [here](https://gist.github.com/netj/8836201).")
+st.write("A demo interface for [PandasAI](https://github.com/gventuri/pandas-ai)")
+st.write(
+    "Looking for an example *.csv-file?, check [here](https://gist.github.com/netj/8836201)."
+)
 
 if "openai_key" not in st.session_state:
     with st.form("API key"):
@@ -31,22 +28,17 @@ if "openai_key" in st.session_state:
         if uploaded_file is not None:
             df = pd.read_csv(uploaded_file)
             st.session_state.df = df
-            
-            #data_frames = []
-            #data_frames.append(df)
-            #combined_df = pd.concat(data_frames, ignore_index=True)
 
     with st.form("Question"):
         question = st.text_input("Question", value="", type="default")
         submitted = st.form_submit_button("Submit")
         if submitted:
             with st.spinner():
-                llm = OpenAI(api_token=API_KEY_2)
-                pandas_ai = PandasAI(llm, conversational=True, enable_cache=False)
+                llm = OpenAI(api_token=st.session_state.openai_key)
+                pandas_ai = PandasAI(llm)
                 x = pandas_ai.run(st.session_state.df, prompt=question)
 
-                fig = plt.TkAgg()
-                #fig, ax = plt.subplots()
+                fig = plt.gcf()
                 if fig.get_axes():
                     st.pyplot(fig)
                 st.write(x)
