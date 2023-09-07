@@ -45,10 +45,10 @@ if "openai_key" in st.session_state:
                 pandas_ai = PandasAI(llm, conversational=True, enable_cache=False)
                 x = pandas_ai.run(st.session_state.df, prompt=question)
                 
-                fig = plt.gcf()
+                fig = plt.gcf(block=False)
                 #fig, ax = plt.subplots()
                 if fig.get_axes():
-                    st.pyplot(fig, block=False)
+                    st.pyplot(fig)
                 st.write(x)
                 st.session_state.prompt_history.append(question)
 
